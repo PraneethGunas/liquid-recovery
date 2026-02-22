@@ -1,0 +1,4 @@
+mnemonic>=0.20
+coincurve>=18.0.0
+requests[socks]>=2.31.0
+pycryptodome>=3.19.0

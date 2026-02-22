@@ -1,0 +1,24 @@
+# Environment (contains your mnemonic words!)
+.env
+
+# Output files
+output/
+*.jsonl
+*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Docker
+.docker/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

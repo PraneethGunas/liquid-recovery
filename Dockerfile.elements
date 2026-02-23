@@ -1,0 +1,28 @@
+FROM debian:bookworm-slim
+
+ARG ELEMENTS_VERSION=23.3.0
+ARG TARGETARCH
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        curl ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+# Download official Elements release binaries
+RUN ARCH=$(case "${TARGETARCH}" in \
+        amd64) echo "x86_64-linux-gnu" ;; \
+        arm64) echo "aarch64-linux-gnu" ;; \
+        *) echo "x86_64-linux-gnu" ;; \
+    esac) && \
+    curl -fSL "https://github.com/ElementsProject/elements/releases/download/elements-${ELEMENTS_VERSION}/elements-elements-${ELEMENTS_VERSION}-${ARCH}.tar.gz" \
+        -o /tmp/elements.tar.gz && \
+    tar -xzf /tmp/elements.tar.gz -C /tmp && \
+    cp /tmp/elements-elements-${ELEMENTS_VERSION}/bin/elementsd /usr/local/bin/ && \
+    cp /tmp/elements-elements-${ELEMENTS_VERSION}/bin/elements-cli /usr/local/bin/ && \
+    rm -rf /tmp/elements* && \
+    chmod +x /usr/local/bin/elementsd /usr/local/bin/elements-cli
+
+RUN mkdir -p /root/.elements
+
+EXPOSE 18884 18891 7042
+
+ENTRYPOINT ["elementsd"]

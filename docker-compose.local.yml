@@ -14,9 +14,10 @@
 services:
   # ======================== ELEMENTS NODE ========================
   elementsd:
-    image: blockstream/elementsd:23.3.0
+    build:
+      context: .
+      dockerfile: Dockerfile.elements
     container_name: elementsd
-    entrypoint: ["/usr/local/bin/elementsd"]
     command:
       - -chain=${ELEMENTS_CHAIN:-liquidtestnet}
       - -server=1

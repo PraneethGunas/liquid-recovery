@@ -21,6 +21,7 @@ services:
     command:
       - -chain=${ELEMENTS_CHAIN:-liquidtestnet}
       - -server=1
+      - -validatepegin=0
       - -rpcuser=${RPC_USER:-liquid}
       - -rpcpassword=${RPC_PASS:-liquid}
       - -rpcallowip=0.0.0.0/0

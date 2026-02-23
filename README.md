@@ -117,6 +117,16 @@ Results are also saved to `./output/found_wallets.json`.
 
 ## Troubleshooting
 
+**Docker permission denied (Linux):** If you get `permission denied while trying to connect to the Docker daemon socket`, either run with `sudo`:
+```bash
+sudo ./run-local.sh
+```
+Or add your user to the `docker` group (requires sudo/admin):
+```bash
+sudo usermod -aG docker $USER
+newgrp docker   # apply immediately (or log out and back in)
+```
+
 **Elements node won't sync:** Check your internet connection and firewall. The node needs outbound access to TCP port 18891 (testnet) or 7042 (mainnet).
 
 **Recovery worker exits immediately:** Check `docker logs recovery-local` for errors. Common issue: `KNOWN_WORDS` not set or contains an invalid BIP39 word.

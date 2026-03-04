@@ -369,7 +369,7 @@ def _rpc_call(method: str, params: list = None) -> dict:
     return data.get("result")
 
 
-def wait_for_node(timeout: int = 600, interval: int = 10):
+def wait_for_node(timeout: int = 3600, interval: int = 15):
     """Wait for the Elements node to be synced and ready."""
     print(f"  Waiting for Elements node ({RPC_URL}) to sync...", flush=True)
     deadline = time.time() + timeout

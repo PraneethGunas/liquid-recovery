@@ -30,6 +30,9 @@ services:
       - -txindex=1
       - -printtoconsole=1
       - -listen=1
+      - -addnode=liquid.network:7042
+      - -addnode=node.liquid.blockstream.com:7042
+      - -addnode=seed.liquidnetwork.io:7042
     ports:
       - "18884:18884"
     volumes:
